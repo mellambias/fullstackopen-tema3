@@ -1,6 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const Note = require("./models/note");
+const serverConfig = require("./env");
+
+const PORT = serverConfig.getServerPort();
 
 let notes = [
 	{
@@ -48,7 +52,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/notes", (req, res) => {
-	res.json(notes);
+	Note.find({}).then((notes) => {
+		res.json(notes);
+	});
 });
 
 app.get("/api/notes/:id", (req, res) => {
@@ -99,7 +105,6 @@ app.post("/api/notes", (req, res) => {
 
 app.use(unknownEndpoint);
 
-const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`);
 });

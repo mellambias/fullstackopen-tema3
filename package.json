@@ -9,14 +9,19 @@
 		"dev": "nodemon index.js",
 		"build:ui": "rm -rf dist && cd ../../p2/part2-notes-frontend && pnpm run build && cp -r dist ../../p3/01_servidorSimple",
 		"build:server": "git add . && git commit -m serverbuild && git push && cd ../../.. && pnpm run git:tree",
-		"deploy:full": "pnpm run build:ui && pnpm run build:server"
+		"deploy:full": "pnpm run build:ui && pnpm run build:server",
+		"debug": "nodemon --inspect index.js"
 	},
-	"keywords": ["node"],
+	"keywords": [
+		"node"
+	],
 	"author": "Miguel E. Llambias Llansó",
 	"license": "ISC",
 	"dependencies": {
 		"cors": "2.8.5",
-		"express": "4.19.2"
+		"dotenv": "16.4.5",
+		"express": "4.19.2",
+		"mongoose": "8.5.2"
 	},
 	"devDependencies": {
 		"nodemon": "3.1.4"
