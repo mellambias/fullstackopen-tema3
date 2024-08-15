@@ -1,7 +1,7 @@
-POST http://localhost:3001/api/notes
-Content-Type: application/json
+POST http://localhost:3002/api/notes HTTP/1.1
+content-type: application/json
 
 {
-    "content":"Vs code rest-client es a pretty handy tool",
-    "important":true
+"content": "GET and POST are the most important methods of HTTP protocol",
+"important": true
 }

@@ -17,6 +17,7 @@ mongoose
 const noteSchema = new mongoose.Schema({
 	content: String,
 	important: Boolean,
+	date: Date,
 });
 
 // configuramos el formato de respuesta JSON para que incluya el id de la nota y no el _id de mongoDB

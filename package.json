@@ -10,11 +10,10 @@
 		"build:ui": "rm -rf dist && cd ../../p2/part2-notes-frontend && pnpm run build && cp -r dist ../../p3/01_servidorSimple",
 		"build:server": "git add . && git commit -m serverbuild && git push && cd ../../.. && pnpm run git:tree",
 		"deploy:full": "pnpm run build:ui && pnpm run build:server",
-		"debug": "nodemon --inspect index.js"
+		"debug": "nodemon --inspect index.js",
+		"git:tree": "cd ../../.. && pnpm run git:tree"
 	},
-	"keywords": [
-		"node"
-	],
+	"keywords": ["node"],
 	"author": "Miguel E. Llambias Llansó",
 	"license": "ISC",
 	"dependencies": {
