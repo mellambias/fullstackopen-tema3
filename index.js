@@ -21,11 +21,11 @@ const unknownEndpoint = (req, res) => {
 };
 
 const errorHandler = (err, req, res, next) => {
-	console.error(err.name, err.message);
+	console.error("name", err.name, "message", err.message);
 
 	switch (err.name) {
 		case "CastError":
-			return res.status(400).send({ error: "malformatted id" });
+			return res.status(400).send({ error: err.message });
 		case "ValidationError":
 			return res.status(400).json({ error: err.message });
 		default:
@@ -84,14 +84,8 @@ app.put("/api/notes/:id", (req, res, next) => {
 		.catch((err) => next(err));
 });
 
-app.post("/api/notes", (req, res) => {
+app.post("/api/notes", (req, res, next) => {
 	const note = req.body;
-
-	if (!note || !note.content) {
-		return res.status(400).json({
-			error: "content is missing",
-		});
-	}
 
 	const newNote = new Note({
 		content: note.content,
@@ -100,9 +94,12 @@ app.post("/api/notes", (req, res) => {
 		date: new Date().toISOString(),
 	});
 
-	newNote.save().then((savedNote) => {
-		res.status(201).json(savedNote);
-	});
+	newNote
+		.save()
+		.then((savedNote) => {
+			res.status(201).json(savedNote);
+		})
+		.catch((error) => next(error));
 });
 
 // controlador de solicitudes no encontradas

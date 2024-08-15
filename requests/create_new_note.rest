@@ -5,3 +5,13 @@ content-type: application/json
 "content": "GET and POST are the most important methods of HTTP protocol",
 "important": true
 }
+
+### Nota que no cumple con los criterios
+
+POST http://localhost:3002/api/notes HTTP/1.1
+content-type: application/json
+
+{
+"content": "lol",
+"important": true
+}
